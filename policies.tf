@@ -23,6 +23,12 @@ path "${local.plugin_paths["request"]}" {
 path "${local.plugin_paths["claim"]}" {
   capabilities = ["read", "update"]
 }
+
+// Capabilities to allow reading
+// access provided through this Gate
+path "${local.plugin_paths["config"]}/*" {
+  capabilities = ["read"]
+}
 EOF
 }
 
@@ -40,6 +46,12 @@ path "${local.plugin_paths["request"]}" {
 
 path "${local.plugin_paths["approve"]}" {
   capabilities = ["update"]
+}
+
+// Capabilities to allow reading
+// access provided through this Gate
+path "${local.plugin_paths["config"]}/*" {
+  capabilities = ["read"]
 }
 EOF
 }
