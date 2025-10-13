@@ -79,6 +79,7 @@ and can be directly attached to Vault/OpenBao Entities, Groups and Auth Methods.
 | Name | Description |
 |------|-------------|
 | <a name="output_mount_path"></a> [mount\_path](#output\_mount\_path) | The Vault/OpenBao path where the plugin has been mounted. |
+| <a name="output_paths"></a> [paths](#output\_paths) | The map of paths supported by this plugin. |
 | <a name="output_policies"></a> [policies](#output\_policies) | The verbatim policies created and referenced in this module. |
 | <a name="output_policy_names"></a> [policy\_names](#output\_policy\_names) | The names of the policies created and referenced in this module. |
 
