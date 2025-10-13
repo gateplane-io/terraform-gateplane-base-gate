@@ -1,0 +1,77 @@
+formatter: markdown
+
+sort:
+  enabled: true
+  by: required
+
+
+output:
+  file: "README.md"
+  mode: replace
+  # For the Pre-Commit to be happy with its newline
+  template: "{{ .Content }}\n"
+
+
+content: |-
+  # Vault/OpenBao Base Gate Configuration (dependency)
+  ![License: ElasticV2](https://img.shields.io/badge/ElasticV2-green?style=flat-square&label=license&cacheSeconds=3600&link=https%3A%2F%2Fwww.elastic.co%2Flicensing%2Felastic-license)
+
+  This Terraform module is not to be used directly.
+
+  It is used by all Terraform modules in this organization, that configure Gates,
+  such as [`terraform-gateplane-policy-gate`](https://github.com/gateplane-io/terraform-gateplane-policy-gate).
+
+  ## What it does
+
+  * It mounts each plugin (registered using [`terraform-gateplane-setup`](https://github.com/gateplane-io/terraform-gateplane-setup))
+  under a designated path
+
+  * It configures parameters, such as `lease` and `required_approvals`, that remain unchanged in all GatePlane plugins.
+
+  * It creates two Vault/OpenBao Policies, one for creating and one for approving AccessRequests.
+
+  ## Resource Naming
+
+  ### Mount Path
+  The variables `endpoint_prefix`, `name` and `path_prefix` are used to establish the mountpoint of the plugin as below:
+  ```
+  <path_prefix>/?<endpoint_prefix>-<name>
+  ```
+  This value is returned by the `mount_path` output, and can be used to construct additional policies.
+
+  ### Policy Names
+  The naming of the two default policies created using the `policy_prefix` and `name` variables, as below:
+  ```
+  <policy_prefix>-?<name>-[requestor|approver]
+  ```
+  The names are returned by the `policy_names` map variable (keys: "requestor", "approver"),
+  and can be directly attached to Vault/OpenBao Entities, Groups and Auth Methods.
+
+  ##### If a `*_prefix` variable is empty (i.e: `""`), the following `/` or `-` is not produced (as shown by the RegEx-like `?`).
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+
+  ## License
+
+  This project is licensed under the [Elastic License v2](https://www.elastic.co/licensing/elastic-license).
+
+  This means:
+
+  - ✅ You can use, fork, and modify it for **yourself** or **within your company**.
+  - ✅ You can submit pull requests and redistribute modified versions (with the license attached).
+  - ❌ You may **not** sell it, offer it as a paid product, or use it in a hosted service (e.g., SaaS).
+  - ❌ You may **not** re-license it under a different license.
+
+  In short: You can use and extend the code freely, privately or inside your business - just don’t build a business around it without our permission.
+  [This FAQ by Elastic](https://www.elastic.co/licensing/elastic-license/faq) greatly summarizes things.
+
+  See the [`./LICENSES/Elastic-2.0.txt`](./LICENSES/Elastic-2.0.txt) file for full details.
