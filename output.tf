@@ -28,3 +28,8 @@ output "policies" {
     "approver"  = vault_policy.gtkpr.policy,
   }
 }
+
+output "paths" {
+  description = "The map of paths supported by this plugin."
+  value       = local.plugin_paths
+}
