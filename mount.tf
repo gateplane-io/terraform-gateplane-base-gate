@@ -22,10 +22,6 @@ resource "vault_generic_endpoint" "plugin_config" {
   ignore_absent_fields = true
 
   data_json = jsonencode(var.plugin_options)
-
-  lifecycle {
-    replace_triggered_by = [null_resource.reconfigure]
-  }
 }
 
 resource "vault_generic_endpoint" "plugin_lease" {
@@ -39,14 +35,4 @@ resource "vault_generic_endpoint" "plugin_lease" {
     lease     = var.lease_ttl,
     lease_max = var.lease_max_ttl,
   })
-
-  lifecycle {
-    replace_triggered_by = [null_resource.reconfigure]
-  }
-}
-
-resource "null_resource" "reconfigure" {
-  triggers = {
-    always_recreate = timestamp()
-  }
 }
