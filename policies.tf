@@ -24,7 +24,7 @@ path "${local.plugin_paths["claim"]}" {
 
 // Capabilities to allow reading
 // access provided through this Gate
-path "${local.plugin_paths["config"]}/*" {
+path "${local.plugin_paths["config"]}*" {
   capabilities = ["read"]
 }
 EOF
@@ -46,7 +46,7 @@ path "${local.plugin_paths["approve"]}" {
 
 // Capabilities to allow reading
 // access provided through this Gate
-path "${local.plugin_paths["config"]}/*" {
+path "${local.plugin_paths["config"]}*" {
   capabilities = ["read"]
 }
 EOF
