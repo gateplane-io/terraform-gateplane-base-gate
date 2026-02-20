@@ -40,8 +40,14 @@ path "${local.plugin_paths["request"]}" {
   capabilities = ["list"]
 }
 
+// base-0.3.2 approve endpoint
 path "${local.plugin_paths["approve"]}" {
   capabilities = ["update"]
+}
+
+// base-0.4.0+ approve endpoint
+path "${local.plugin_paths["approve"]}/*" {
+  capabilities = ["update", "list"]
 }
 
 // Capabilities to allow reading
